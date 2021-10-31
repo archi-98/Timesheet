@@ -45,7 +45,7 @@ public class EntrepriseServiceImplTest {
 	@Order(4)
 	public void testGetAllDepartementsNamesByEntreprise(){
 		 ent.getAllDepartementsNamesByEntreprise(3);
-		// Assertions.assertEquals(1, ent.getAllDepartementsNamesByEntreprise(3).size());
+		
 		
 	}
 	
