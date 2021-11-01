@@ -32,12 +32,14 @@ public class IControllerEmployeImpl  {
 		iemployeservice.mettreAjourEmailByEmployeId(email, employeId);
 		
 	}
+    public List<Employe> getAllEmployes() {
+		
+		return iemployeservice.getAllEmployes();
+	}
+
 
 	
-
-
-	
-	public void desaffecterEmployeDuDepartement(int employeId, int depId)
+    public void desaffecterEmployeDuDepartement(int employeId, int depId)
 	{
 		iemployeservice.desaffecterEmployeDuDepartement(employeId, depId);
 	}
@@ -67,5 +69,9 @@ public class IControllerEmployeImpl  {
 		iemployeservice.deleteContratById(contratId);
 	}
 	
+	public void affecterEmployeADepartement(int employeId, int depId) {
+		iemployeservice.affecterEmployeADepartement(employeId, depId);
+		
+	}
 	
 }
