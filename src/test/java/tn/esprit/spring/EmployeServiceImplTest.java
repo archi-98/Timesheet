@@ -11,14 +11,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import tn.esprit.spring.entities.Contrat;
+
+import tn.esprit.spring.entities.Entreprise;
+
 import tn.esprit.spring.entities.Employe;
 import tn.esprit.spring.entities.Role;
+
 import tn.esprit.spring.services.IEmployeService;
 
 @SpringBootTest
 public class EmployeServiceImplTest {
 @Autowired
 IEmployeService es;
+
+
+@Test
+@Order(10)
+public int testgetNombreEmployeJPQL(){
+	
+  return es.getNombreEmployeJPQL();
+	
+}
 
  
 @Test
@@ -28,6 +41,7 @@ public void testAjouterEmploye(){
 	int id=es.ajouterEmploye(e);
 	Assertions.assertEquals(id,e.getId());
 }
+
 
 @Test
 @Order(2)
@@ -79,4 +93,5 @@ public void testDeleteContratById(){
 public void testDesaffecterEmployeDuDepartement(){
 	//es.desaffecterEmployeDuDepartement(2, 1);
 }
+
 }

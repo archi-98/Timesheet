@@ -12,4 +12,7 @@ src/main/resources/application.properties
 *.lst
 target/Timesheet-1.0.jar
 target/Timesheet-1.0.jar.original
+
+target/surefire-reports/tn.esprit.spring.EntrepriseServiceImplTest.txt
+
 *.txt
