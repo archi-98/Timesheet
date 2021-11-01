@@ -132,6 +132,84 @@ public class EmployeServiceImpl implements IEmployeService {
 		l.info("fin delete contrat by id");
 
 	}
+	public int getNombreEmployeJPQL() {
+		l.info("début getNombreEmploye");
+		l.info("fin getNombreEmploye");
+		return employeRepository.countemp();
+		
+	}
+	
+	public List<String> getAllEmployeNamesJPQL() {
+		l.info("début getAllEmployeNames");
+		l.info("fin getAllEmployeNames");
+		return employeRepository.employeNames();
+
+	}
+	
+	public List<Employe> getAllEmployeByEntreprise(Entreprise entreprise) {
+		l.info("début getAllEmployeByEntreprise");
+		l.info("fin getAllEmployeByEntreprise");
+		return employeRepository.getAllEmployeByEntreprisec(entreprise);
+	}
+
+	public void mettreAjourEmailByEmployeIdJPQL(String email, int employeId) {
+		l.info("début mettre à jour email de l'employe by id");
+		employeRepository.mettreAjourEmailByEmployeIdJPQL(email, employeId);
+		l.info("fin mettre à jour email de l'employe by id");
+
+	}
+	public void deleteAllContratJPQL() {
+		 l.info("début delete all Contrat");
+         employeRepository.deleteAllContratJPQL();
+         l.info("fin delete all Contrat");
+	}
+	
+	public float getSalaireByEmployeIdJPQL(int employeId) {
+		 l.info("début getSalaireByEmployeId");
+		 l.info("fin getSalaireByEmployeId");
+		return employeRepository.getSalaireByEmployeIdJPQL(employeId);
+	}
+
+	public Double getSalaireMoyenByDepartementId(int departementId) {
+		l.info("début getSalaireMoyenByDepartementId");
+		l.info("fin getSalaireMoyenByDepartementId");
+		return employeRepository.getSalaireMoyenByDepartementId(departementId);
+	}
+	
+	public List<Timesheet> getTimesheetsByMissionAndDate(Employe employe, Mission mission, Date dateDebut,
+			Date dateFin) {
+		l.info("début getSalaireMoyenByDepartementId");
+		l.info("fin getSalaireMoyenByDepartementId");
+		return timesheetRepository.getTimesheetsByMissionAndDate(employe, mission, dateDebut, dateFin);
+	}
+
+	
+	@Transactional	
+	public void affecterEmployeADepartement(int employeId, int depId) {
+		l.info("début affectation employee à departement");
+
+		Departement depManagedEntity = deptRepoistory.findById(depId).get();
+		Employe employeManagedEntity = employeRepository.findById(employeId).get();
+
+		if(depManagedEntity.getEmployes() == null){
+			l.info("list employee dans le departement est null");
+			List<Employe> employes = new ArrayList<>();
+			employes.add(employeManagedEntity);
+			depManagedEntity.setEmployes(employes);
+			l.info("employee affecté à departement");
+		}else{
+			l.info("list employee dans le departement non null");
+			depManagedEntity.getEmployes().add(employeManagedEntity);
+			l.info("employee affecté à departement");
+
+		}
+		l.info("fin affectation employee à departement");
+
+	}
+	
+	
+
+
 	
 	
 	
