@@ -38,17 +38,17 @@ public class EmployeServiceImpl implements IEmployeService {
 	public int ajouterEmploye(Employe employe) {
 		l.info("début ajout employee");
 		employeRepository.save(employe);
-		l.info("fin ajout employee");
+		l.info("fin ajout employee: "+employe.toString());
 		return employe.getId();
 	}
 
 	public void mettreAjourEmailByEmployeId(String email, int employeId) {
-		l.info("début mettre à jour email d'employee");
+		l.info("début mettre à jour email d'employee d'id "+ String.valueOf(employeId));
 		Employe employe = employeRepository.findById(employeId).get();
 		employe.setEmail(email);
 		l.info("email de l'employee mis à jour");
 		employeRepository.save(employe);
-		l.info("fin mettre à jour email d'employee");
+		l.info("fin mettre à jour email d'employee: " + employe.toString());
 	}
 
 	public List<Employe> getAllEmployes() {
@@ -77,7 +77,7 @@ public class EmployeServiceImpl implements IEmployeService {
 	public int ajouterContrat(Contrat contrat) {
 		l.info("début ajout contrat");
 		contratRepoistory.save(contrat);
-		l.info("fin ajout contrat");
+		l.info("fin ajout contrat: "+ contrat.toString());
 
 		return contrat.getReference();
 
@@ -124,10 +124,10 @@ public class EmployeServiceImpl implements IEmployeService {
 	}
 
 	public void deleteContratById(int contratId) {
-		l.info("début delete contrat by id");
+		l.info("début delete contrat by id "+ String.valueOf(contratId));
 		Contrat contratManagedEntity = contratRepoistory.findById(contratId).get();
 		contratRepoistory.delete(contratManagedEntity);
-		l.info("contrat deleted");
+		l.info("contrat "+String.valueOf(contratId)+" is deleted");
 
 		l.info("fin delete contrat by id");
 
