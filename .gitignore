@@ -9,3 +9,6 @@
 *.class
 *.properties
 src/main/resources/application.properties
+*.lst
+target/Timesheet-1.0.jar
+target/Timesheet-1.0.jar.original

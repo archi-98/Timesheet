@@ -160,7 +160,7 @@ public class EmployeServiceImpl implements IEmployeService {
 	public void mettreAjourEmailByEmployeIdJPQL(String email, int employeId) {
 		l.info("début mettre à jour email de l'employe by id");
 		employeRepository.mettreAjourEmailByEmployeIdJPQL(email, employeId);
-		l.info("fin mettre à jour email de l'employe by id");
+		l.info("fin mettre à jour email de l'employe by id et le nouveau email est:" + email);
 
 	}
 	public void deleteAllContratJPQL() {
@@ -201,7 +201,7 @@ public class EmployeServiceImpl implements IEmployeService {
 			List<Employe> employes = new ArrayList<>();
 			employes.add(employeManagedEntity);
 			depManagedEntity.setEmployes(employes);
-			l.info("employee affecté à departement");
+			l.info("employee avec l'id:"+employeId+"  est affecté à departement d'id:" + depId);
 		}else{
 			l.info("list employee dans le departement non null");
 			depManagedEntity.getEmployes().add(employeManagedEntity);
