@@ -38,7 +38,7 @@ public class EmployeServiceImpl implements IEmployeService {
 	public int ajouterEmploye(Employe employe) {
 		l.info("début ajout employee");
 		employeRepository.save(employe);
-		l.info("fin ajout employee: "+employe.toString());
+		l.info("fin ajout employee ");
 		return employe.getId();
 	}
 
@@ -48,7 +48,7 @@ public class EmployeServiceImpl implements IEmployeService {
 		employe.setEmail(email);
 		l.info("email de l'employee mis à jour");
 		employeRepository.save(employe);
-		l.info("fin mettre à jour email d'employee: " + employe.toString());
+		l.info("fin mettre à jour email d'employee " );
 	}
 
 	public List<Employe> getAllEmployes() {
@@ -77,7 +77,7 @@ public class EmployeServiceImpl implements IEmployeService {
 	public int ajouterContrat(Contrat contrat) {
 		l.info("début ajout contrat");
 		contratRepoistory.save(contrat);
-		l.info("fin ajout contrat: "+ contrat.toString());
+		l.info("fin ajout contrat ");
 
 		return contrat.getReference();
 
@@ -116,7 +116,7 @@ public class EmployeServiceImpl implements IEmployeService {
 		//la table d'association
 		for(Departement dep : employe.getDepartements()){
 			dep.getEmployes().remove(employe);
-			l.info("remove employe "+employe.toString());
+			l.info("remove employe ");
 		}
 
 		employeRepository.delete(employe);
