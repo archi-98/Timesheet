@@ -7,3 +7,5 @@
 *.properties
 *.MF
 *.class
+*.properties
+src/main/resources/application.properties

@@ -132,6 +132,11 @@ public class EmployeServiceImpl implements IEmployeService {
 		l.info("fin delete contrat by id");
 
 	}
+	
+	
+	
+	
+	
 	public int getNombreEmployeJPQL() {
 		l.info("début getNombreEmploye");
 		l.info("fin getNombreEmploye");
