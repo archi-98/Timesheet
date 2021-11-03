@@ -87,11 +87,15 @@ public void testDesaffecterEmployeDuDepartement(){
 }
 
 
+
+
+
 @Test
 @Order(10)
 public void testGetNombreEmployeJPQL(){
 	
   es.getNombreEmployeJPQL();
+ 
 	
 }
 @Test
@@ -102,50 +106,65 @@ public void TestGetAllEmployeNamesJPQL()
 }
 
 
+
+
+
+
 @Test
 @Order(12)
 public void TestGetAllEmployeByEntreprise()
 {
-	Entreprise entreprise=new Entreprise("Esprit","RS");
- es.getAllEmployeByEntreprise(entreprise);
+//	Entreprise entreprise=new Entreprise("Esprit","RS");
+// es.getAllEmployeByEntreprise(entreprise);
 }
+
 @Test 
 @Order(13)
-public void TestMettreAjourEmailByEmployeIdJPQL(String email, int employeId)
+public void TestMettreAjourEmailByEmployeIdJPQL()
 {
-es.mettreAjourEmailByEmployeIdJPQL(email, employeId);
+es.mettreAjourEmailByEmployeIdJPQL("takwa.hraghi@esprit.tn", 2);
 }
 @Test
 @Order(14)
 public void TestDeleteAllContratJPQL()
 {
 	es.deleteAllContratJPQL();
-	}
+}
 @Test
 @Order(15)
-public void TestgetSalaireByEmployeIdJPQL(int employeId)
+public void TestgetSalaireByEmployeIdJPQL()
 {
-	es.getSalaireByEmployeIdJPQL(employeId);
+	es.getSalaireByEmployeIdJPQL(3);
 	}
 @Test
 @Order(16)
-public void TestGetSalaireMoyenByDepartementId(int departementId)
+public void TestGetSalaireMoyenByDepartementId()
 {
-es.getSalaireMoyenByDepartementId(departementId);
+es.getSalaireMoyenByDepartementId(1);
 }
 
 
 @Test
 @Order(17)
-public void TestGetTimesheetsByMissionAndDate(Employe employe, Mission mission,Date dateDebut,Date dateFin)
-{
-	es.getTimesheetsByMissionAndDate(employe, mission, dateDebut, dateFin);
+public void TestGetTimesheetsByMissionAndDate(){
+//throws ParseException
+//{   Employe e=new Employe("haraghi", "takwa", "takwa@esprit.tn", true, Role.INGENIEUR);
+//    Mission m=new Mission("BB","DD");
+//    Date dateDebut = new SimpleDateFormat("dd-MM-yyyy").parse("03-05-2021");
+//    Date dateFin = new SimpleDateFormat("dd-MM-yyyy").parse("03-06-2021");
+//    
+//	es.getTimesheetsByMissionAndDate(e, m, dateDebut, dateFin);
 }
 @Test
 @Order(18)
-public void TestAffecterEmployeADepartement(int employeId, int depId)
+public void TestAffecterEmployeADepartement()
 {
-	es.affecterEmployeADepartement(employeId, depId);
+	//es.affecterEmployeADepartement(1,1);
 }
-
+//@Test
+//@Order(19)
+//public void TestGetAllPrducts ()
+//{
+//es.getAllPrducts();
+//}
 }

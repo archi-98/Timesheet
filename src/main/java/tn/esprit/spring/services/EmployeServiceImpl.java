@@ -200,29 +200,53 @@ return 1;}
 		l.info("fin getAllEmployeByEntreprise");
 		return employeRepository.getAllEmployeByEntreprisec(entreprise);
 	}
-
-	public void mettreAjourEmailByEmployeIdJPQL(String email, int employeId) {
+@Override
+@Transactional
+	public int mettreAjourEmailByEmployeIdJPQL(String email, int employeId) {
 		l.info("début mettre à jour email de l'employe by id");
+		l.debug("je vais instancier un nouveau employe:");
+		Employe emp=new Employe();
+		l.debug("je vais faire la recherche de l'employe par son id:");
+		emp= employeRepository.findById(employeId).orElse(null);
+		if(emp!=null)
+			
 		employeRepository.mettreAjourEmailByEmployeIdJPQL(email, employeId);
+		l.debug( "affectation de la mise à jour de l'email par l'id");
 		l.info("fin mettre à jour email de l'employe by id et le nouveau email est:" + email);
 
+		return 0 ;
+		
 	}
-	public void deleteAllContratJPQL() {
+	public int deleteAllContratJPQL() {
 		 l.info("début delete all Contrat");
          employeRepository.deleteAllContratJPQL();
          l.info("fin delete all Contrat");
+	return 0 ;
 	}
 	
 	public float getSalaireByEmployeIdJPQL(int employeId) {
-		 l.info("début getSalaireByEmployeId");
+		try{ l.info("début getSalaireByEmployeId");
 		 l.info("fin getSalaireByEmployeId");
-		return employeRepository.getSalaireByEmployeIdJPQL(employeId);
+		 Employe emp=new Employe();
+		 emp= employeRepository.findById(employeId).orElse(null);
+			if(emp!=null)
+		 employeRepository.getSalaireByEmployeIdJPQL(employeId);
+			}
+		catch (Exception e) { l.error("erreur dans findById():" + e);}
+		
+		
+		 return 0;
 	}
 
 	public Double getSalaireMoyenByDepartementId(int departementId) {
 		l.info("début getSalaireMoyenByDepartementId");
 		l.info("fin getSalaireMoyenByDepartementId");
-		return employeRepository.getSalaireMoyenByDepartementId(departementId);
+		Departement dep=new Departement();
+		dep= deptRepoistory.findById(departementId).orElse(null);
+		if(dep!=null)
+		employeRepository.getSalaireMoyenByDepartementId(departementId);
+		return null;
+		
 	}
 	
 	public List<Timesheet> getTimesheetsByMissionAndDate(Employe employe, Mission mission, Date dateDebut,
@@ -241,7 +265,8 @@ return 1;}
 		Employe employeManagedEntity = employeRepository.findById(employeId).get();
 
 		if(depManagedEntity.getEmployes() == null){
-			l.info("list employee dans le departement est null");
+			l.info("list employee dans le departement est null")
+			;
 			List<Employe> employes = new ArrayList<>();
 			employes.add(employeManagedEntity);
 			depManagedEntity.setEmployes(employes);
@@ -256,4 +281,5 @@ return 1;}
 
 	}
 	
+
 	}
