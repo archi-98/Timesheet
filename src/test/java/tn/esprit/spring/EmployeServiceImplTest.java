@@ -35,10 +35,10 @@ public void testAjouterEmploye(){
 	Assertions.assertEquals(id,e.getId());
 }
  
-
+@Test
 @Order(2)
 public void testMettreAjourEmailByEmployeId(){
-	es.mettreAjourEmailByEmployeId("takwa.hraghi@esprit.tn", 2);
+es.mettreAjourEmailByEmployeId("takwa.hraghi@esprit.tn", 40);
 }
 @Test
 @Order(3)
@@ -61,7 +61,7 @@ public void testAjouterContrat()throws ParseException {
 @Test
 @Order(5)
 public void testAffecterContratAEmploye(){
-	es.affecterContratAEmploye(1, 1);
+	es.affecterContratAEmploye(11, 1);
 }
 
 @Test
