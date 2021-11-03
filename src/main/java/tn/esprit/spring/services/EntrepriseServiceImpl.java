@@ -16,9 +16,9 @@ import tn.esprit.spring.repository.EntrepriseRepository;
 public class EntrepriseServiceImpl implements IEntrepriseService {
 
 	/*mvn clean package -Dmaven.test.skip=true deploy:deploy-file 
-	 * -DgroupId=tn.esprit.spring -DartifactId=timesheet_devOps -Dversion=1.0 
-	 * -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://localhost:8081/repository/maven-releases/ 
-	 * -Dfile=target/timesheet_devOps-1.0.jar
+	  -DgroupId=tn.esprit.spring -DartifactId=timesheet_devOps -Dversion=1.0 
+	  -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://localhost:8081/repository/maven-releases/ 
+	  -Dfile=target/timesheet_devOps-1.0.jar
 	 */
 	
 	
