@@ -35,10 +35,10 @@ public void testAjouterEmploye(){
 	Assertions.assertEquals(id,e.getId());
 }
  
-
+@Test
 @Order(2)
 public void testMettreAjourEmailByEmployeId(){
-	es.mettreAjourEmailByEmployeId("takwa.hraghi@esprit.tn", 2);
+es.mettreAjourEmailByEmployeId("takwa.hraghi@esprit.tn", 40);
 }
 @Test
 @Order(3)
@@ -61,7 +61,7 @@ public void testAjouterContrat()throws ParseException {
 @Test
 @Order(5)
 public void testAffecterContratAEmploye(){
-	es.affecterContratAEmploye(1, 1);
+	es.affecterContratAEmploye(11, 1);
 }
 
 @Test
@@ -72,13 +72,13 @@ public void testGetEmployePrenomById(){
 @Test
 @Order(7)
 public void testDeleteEmployeById(){
-	es.deleteEmployeById(10);
+	es.deleteEmployeById(12);
 }
 
 @Test
 @Order(8)
 public void testDeleteContratById(){
-	es.deleteContratById(10);
+	es.deleteContratById(11);
 }
 @Test
 @Order(9)
@@ -106,6 +106,7 @@ public void TestGetAllEmployeNamesJPQL()
 }
 
 
+
 //@Test
 //@Order(12)
 //public void TestGetAllEmployeByEntreprise()
@@ -113,6 +114,15 @@ public void TestGetAllEmployeNamesJPQL()
 	//Entreprise entreprise=new Entreprise("Esprit","RS");
  //es.getAllEmployeByEntreprise(entreprise);
 //}
+
+@Test
+@Order(12)
+public void TestGetAllEmployeByEntreprise()
+{
+	Entreprise entreprise=new Entreprise("Esprit","RS");
+ es.getAllEmployeByEntreprise(entreprise);
+}
+
 @Test 
 @Order(13)
 public void TestMettreAjourEmailByEmployeIdJPQL()
@@ -137,6 +147,8 @@ public void TestGetSalaireMoyenByDepartementId()
 {
 es.getSalaireMoyenByDepartementId(1);
 }
+
+
 @Test
 @Order(17)
 public void TestGetTimesheetsByMissionAndDate()throws ParseException

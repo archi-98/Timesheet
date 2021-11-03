@@ -42,27 +42,47 @@ public class EmployeServiceImpl implements IEmployeService {
 		return employe.getId();
 	}
 
-	public void mettreAjourEmailByEmployeId(String email, int employeId) {
-		l.info("début mettre à jour email d'employee d'id "+ String.valueOf(employeId));
-		Employe employe = employeRepository.findById(employeId).get();
-		employe.setEmail(email);
-		l.info("email de l'employee mis à jour");
-		employeRepository.save(employe);
-		l.info("fin mettre à jour email d'employee " );
+	public int mettreAjourEmailByEmployeId(String email, int employeId) {
+		l.info("début mettre à jour email d'employee d'id "+ employeId);
+		try {Employe employe = employeRepository.findById(employeId).orElse(null);
+			if(employe == null){
+				l.info("employe not found");
+				l.info("fin mettre à jour email d'employee " );
+
+				return 0;
+		}else{
+			employe.setEmail(email);
+			l.info("email de l'employee mis à jour");
+			employeRepository.save(employe);
+			l.info("email de l'employee d id "+employeId+" est mis à jour");
+			l.info("fin mettre à jour email d'employee " );
+			return 1;}
+			
+		}
+		catch(Exception e) 
+			{l.error("Erreur : " + e);
+			return 0;}
+			
+		
 	}
 
 	public List<Employe> getAllEmployes() {
 		l.info("début getAllEmployes");
-		l.info("getAllEmployes");
+		l.info("fin getAllEmployes");
 	    return (List<Employe>) employeRepository.findAll();
 	}
 
 	@Transactional
-	public void desaffecterEmployeDuDepartement(int employeId, int depId)
-	{			l.info("début desaffectation employee à departement");
+	public int desaffecterEmployeDuDepartement(int employeId, int depId)
+	{	l.info("début desaffectation employee à departement");
 
-		Departement dep = deptRepoistory.findById(depId).get();
-
+		Departement dep = deptRepoistory.findById(depId).orElse(null);
+if(dep==null){
+	l.info("departement introuvable");
+	l.info("fin desaffectation employee à departement");
+return 0;
+}
+else {
 		int employeNb = dep.getEmployes().size();
 		for(int index = 0; index < employeNb; index++){
 			if(dep.getEmployes().get(index).getId() == employeId){
@@ -72,45 +92,61 @@ public class EmployeServiceImpl implements IEmployeService {
 			}
 		}
 		l.info("fin desaffectation employee à departement");
+
+		return 1;
 	}
+}
 
 	public int ajouterContrat(Contrat contrat) {
 		l.info("début ajout contrat");
 		contratRepoistory.save(contrat);
-		l.info("fin ajout contrat ");
+		l.info("fin ajout contrat de reference "+contrat.getReference());
 
 		return contrat.getReference();
 
 	}
 
-	public void affecterContratAEmploye(int contratId, int employeId) {
+	public int affecterContratAEmploye(int contratId, int employeId) {
 		l.info("début affectation contrat a employe");
 
-		Contrat contratManagedEntity = contratRepoistory.findById(contratId).get();
-		Employe employeManagedEntity = employeRepository.findById(employeId).get();
-
+		Contrat contratManagedEntity = contratRepoistory.findById(contratId).orElse(null);
+		Employe employeManagedEntity = employeRepository.findById(employeId).orElse(null);
+if(contratManagedEntity==null || employeManagedEntity==null){
+	l.info("contrat ou employe not found");
+	l.info("fin affectation contrat a employe");
+	return 0;
+}else {
 		contratManagedEntity.setEmploye(employeManagedEntity);
-		l.info("contrat affecte a employe");
+		l.info("contrat"+contratId+" affecte a employe "+employeId);
 
 		contratRepoistory.save(contratManagedEntity);
 		l.info("fin affectation contrat a employe");
-
-	}
+return 1;
+	}}
 
 	public String getEmployePrenomById(int employeId) {
-		l.info("début get employePrenom by id");
+		l.info("début get employePrenom by id "+employeId);
 
-		Employe employeManagedEntity = employeRepository.findById(employeId).get();
-		l.info("fin get employePrenom by id");
+		Employe employeManagedEntity = employeRepository.findById(employeId).orElse(null);
+		if(employeManagedEntity==null){
+			l.info("employe introuvable + fin get employePrenom by id");
+			return "not found";
+		}
+		else{
+			l.info("fin get employePrenom by id "+employeManagedEntity.getId());
 
-		return employeManagedEntity.getPrenom();
+		return employeManagedEntity.getPrenom();}
 		
 	}
-	public void deleteEmployeById(int employeId)
+	public int deleteEmployeById(int employeId)
 	{		l.info("début delete employe by id");
 
-		Employe employe = employeRepository.findById(employeId).get();
-
+		Employe employe = employeRepository.findById(employeId).orElse(null);
+		if(employe==null){
+			l.info("employe introuvable + fin delete employe by id");
+			return 0;
+		}
+		else{
 		//Desaffecter l'employe de tous les departements
 		//c'est le bout master qui permet de mettre a jour
 		//la table d'association
@@ -121,16 +157,22 @@ public class EmployeServiceImpl implements IEmployeService {
 
 		employeRepository.delete(employe);
 		l.info("fin delete employe by id");
-	}
+		return 1;
+	}}
 
-	public void deleteContratById(int contratId) {
-		l.info("début delete contrat by id "+ String.valueOf(contratId));
-		Contrat contratManagedEntity = contratRepoistory.findById(contratId).get();
+	public int deleteContratById(int contratId) {
+		l.info("début delete contrat by id "+contratId);
+		Contrat contratManagedEntity = contratRepoistory.findById(contratId).orElse(null);
+		if(contratManagedEntity==null){
+			l.info("contrat introuvable + fin delete contrat by id");
+			return 0;
+		}
+		else{
 		contratRepoistory.delete(contratManagedEntity);
-		l.info("contrat "+String.valueOf(contratId)+" is deleted");
+		l.info("contrat "+contratId+" is deleted");
 
-		l.info("fin delete contrat by id");
-
+		l.info("fin delete contrat by id "+contratId);
+return 1;}
 	}
 	
 	
