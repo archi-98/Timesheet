@@ -80,13 +80,13 @@ public void testGetEmployePrenomById(){
 @Test
 @Order(7)
 public void testDeleteEmployeById(){
-	es.deleteEmployeById(3);
+	es.deleteEmployeById(5);
 }
 
 @Test
 @Order(8)
 public void testDeleteContratById(){
-	es.deleteContratById(2);
+	es.deleteContratById(3);
 }
 @Test
 @Order(9)
