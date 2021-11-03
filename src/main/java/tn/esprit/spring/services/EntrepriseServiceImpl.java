@@ -16,10 +16,12 @@ import tn.esprit.spring.repository.EntrepriseRepository;
 public class EntrepriseServiceImpl implements IEntrepriseService {
 
 	/*mvn clean package -Dmaven.test.skip=true deploy:deploy-file 
-	 * -DgroupId=tn.esprit.spring -DartifactId=timesheet_devOps -Dversion=1.0 
-	 * -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://localhost:8081/repository/maven-releases/ 
-	 * -Dfile=target/timesheet_devOps-1.0.jar
+	  -DgroupId=tn.esprit.spring -DartifactId=timesheet_devOps -Dversion=1.0 
+	  -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://localhost:8081/repository/maven-releases/ 
+	  -Dfile=target/timesheet_devOps-1.0.jar
 	 */
+	
+	
 	@Autowired
     EntrepriseRepository entrepriseRepoistory;
 	@Autowired
@@ -45,7 +47,7 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 	}
 	@Override
 	public void affecterDepartementAEntreprise(int depId, int entrepriseId) {
-		//Le bout Master de cette relation N:1 est departement  
+				//Le bout Master de cette relation N:1 est departement  
 				//donc il faut rajouter l'entreprise a departement 
 				// ==> c'est l'objet departement(le master) qui va mettre a jour l'association
 				//Rappel : la classe qui contient mappedBy represente le bout Slave
