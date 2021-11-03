@@ -1,0 +1,12 @@
+
+.classpath
+.project
+*.class
+*.lst
+*.xml
+*.txt
+*.properties
+*.MF
+*.prefs
+*.original
+*.jar
