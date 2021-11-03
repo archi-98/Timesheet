@@ -34,14 +34,14 @@ public class EmployeServiceImpl implements IEmployeService {
 	TimesheetRepository timesheetRepository;
 
 	private static final Logger l = LogManager.getLogger(EmployeServiceImpl.class);
-	
+	@Override
 	public int ajouterEmploye(Employe employe) {
 		l.info("début ajout employee");
 		employeRepository.save(employe);
 		l.info("fin ajout employee ");
 		return employe.getId();
 	}
-
+	@Override
 	public int mettreAjourEmailByEmployeId(String email, int employeId) {
 		l.info("début mettre à jour email d'employee d'id "+ employeId);
 		try {Employe employe = employeRepository.findById(employeId).orElse(null);
@@ -65,7 +65,7 @@ public class EmployeServiceImpl implements IEmployeService {
 			
 		
 	}
-
+	@Override
 	public List<Employe> getAllEmployes() {
 		l.info("début getAllEmployes");
 		l.info("fin getAllEmployes");
@@ -73,6 +73,7 @@ public class EmployeServiceImpl implements IEmployeService {
 	}
 
 	@Transactional
+	@Override
 	public int desaffecterEmployeDuDepartement(int employeId, int depId)
 	{	l.info("début desaffectation employee à departement");
 
@@ -96,7 +97,7 @@ else {
 		return 1;
 	}
 }
-
+	@Override
 	public int ajouterContrat(Contrat contrat) {
 		l.info("début ajout contrat");
 		contratRepoistory.save(contrat);
@@ -105,7 +106,7 @@ else {
 		return contrat.getReference();
 
 	}
-
+	@Override
 	public int affecterContratAEmploye(int contratId, int employeId) {
 		l.info("début affectation contrat a employe");
 
@@ -123,7 +124,7 @@ if(contratManagedEntity==null || employeManagedEntity==null){
 		l.info("fin affectation contrat a employe");
 return 1;
 	}}
-
+	@Override
 	public String getEmployePrenomById(int employeId) {
 		l.info("début get employePrenom by id "+employeId);
 
@@ -138,6 +139,7 @@ return 1;
 		return employeManagedEntity.getPrenom();}
 		
 	}
+	@Override
 	public int deleteEmployeById(int employeId)
 	{		l.info("début delete employe by id");
 
@@ -159,7 +161,7 @@ return 1;
 		l.info("fin delete employe by id");
 		return 1;
 	}}
-
+	@Override
 	public int deleteContratById(int contratId) {
 		l.info("début delete contrat by id "+contratId);
 		Contrat contratManagedEntity = contratRepoistory.findById(contratId).orElse(null);
