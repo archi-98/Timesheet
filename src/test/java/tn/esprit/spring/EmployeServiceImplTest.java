@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
+
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
@@ -16,8 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import tn.esprit.spring.entities.Contrat;
 
-import tn.esprit.spring.entities.Entreprise;
-import tn.esprit.spring.entities.Mission;
+
 import tn.esprit.spring.entities.Employe;
 import tn.esprit.spring.entities.Role;
 import tn.esprit.spring.repository.ContratRepository;
@@ -45,7 +44,8 @@ public void testAjouterEmploye(){
 @Test
 @Order(2)
 public void testMettreAjourEmailByEmployeId(){
-es.mettreAjourEmailByEmployeId("takwa.hraghi@esprit.tn", 40);
+es.mettreAjourEmailByEmployeId("takwa.hraghi@esprit.tn", 3);
+Assertions.assertEquals("takwa.hraghi@esprit.tn",er.findById(3).get().getEmail());
 }
 @Test
 @Order(3)
@@ -68,24 +68,29 @@ public void testAjouterContrat()throws ParseException {
 @Test
 @Order(5)
 public void testAffecterContratAEmploye(){
-	es.affecterContratAEmploye(11, 1);
+	es.affecterContratAEmploye(23,1);
 }
 
 @Test
 @Order(6)
 public void testGetEmployePrenomById(){
 	es.getEmployePrenomById(1);
+	Assertions.assertEquals("takwa",es.getEmployePrenomById(1));
 }
 @Test
 @Order(7)
 public void testDeleteEmployeById(){
 	es.deleteEmployeById(12);
+	Assertions.assertNull(er.findById(12).orElse(null));
+	
 }
 
 @Test
 @Order(8)
 public void testDeleteContratById(){
 	es.deleteContratById(11);
+	Assertions.assertNull(cr.findById(11).orElse(null));
+
 }
 @Test
 @Order(9)
