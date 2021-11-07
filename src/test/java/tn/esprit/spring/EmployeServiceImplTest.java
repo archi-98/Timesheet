@@ -129,8 +129,8 @@ public void TestGetAllEmployeByEntreprise()
 @Order(13)
 public void TestMettreAjourEmailByEmployeIdJPQL()
 {
-es.mettreAjourEmailByEmployeIdJPQL("takwa.hraghi@esprit.tn", 50);
-Assertions.assertEquals("takwa.hraghi@esprit.tn",er.findById(50).get().getEmail());
+es.mettreAjourEmailByEmployeIdJPQL("takwa.hraghi@esprit.tn", 10);
+Assertions.assertEquals("takwa.hraghi@esprit.tn",er.findById(10).get().getEmail());
 
 }
 @Test
