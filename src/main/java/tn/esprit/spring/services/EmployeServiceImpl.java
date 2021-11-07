@@ -3,7 +3,6 @@ package tn.esprit.spring.services;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -89,7 +88,7 @@ else {
 			if(dep.getEmployes().get(index).getId() == employeId){
 				dep.getEmployes().remove(index);
 				l.info("employe desafecté du departement");
-				break;//a revoir
+				break;
 			}
 		}
 		l.info("fin desaffectation employee à departement");
@@ -149,9 +148,7 @@ return 1;
 			return 0;
 		}
 		else{
-		//Desaffecter l'employe de tous les departements
-		//c'est le bout master qui permet de mettre a jour
-		//la table d'association
+		
 		for(Departement dep : employe.getDepartements()){
 			dep.getEmployes().remove(employe);
 			l.info("remove employe ");
@@ -189,63 +186,63 @@ return 1;}
 	}
 	
 	public List<String> getAllEmployeNamesJPQL() {
-		l.info("début getAllEmployeNames");
-		l.info("fin getAllEmployeNames");
+		l.info("In getAllEmployeNames");
+		l.info("Out getAllEmployeNames");
 		return employeRepository.employeNames();
 
 	}
 	
 	public List<Employe> getAllEmployeByEntreprise(Entreprise entreprise) {
-		l.info("début getAllEmployeByEntreprise");
-		l.info("fin getAllEmployeByEntreprise");
+		l.info("In getAllEmployeByEntreprise");
+		l.info("Out getAllEmployeByEntreprise");
 		return employeRepository.getAllEmployeByEntreprisec(entreprise);
 	}
 @Override
 @Transactional
 	public int mettreAjourEmailByEmployeIdJPQL(String email, int employeId) {
-		l.info("début mettre à jour email de l'employe by id");
-		l.debug("je vais instancier un nouveau employe:");
-		Employe emp=new Employe();
-		l.debug("je vais faire la recherche de l'employe par son id:");
-		emp= employeRepository.findById(employeId).orElse(null);
-		if(emp!=null)
-			
-		employeRepository.mettreAjourEmailByEmployeIdJPQL(email, employeId);
-		l.debug( "affectation de la mise à jour de l'email par l'id");
-		l.info("fin mettre à jour email de l'employe by id et le nouveau email est:" + email);
-
-		return 0 ;
+		l.info("Debut mettreAjourEmailByEmployeIdJPQL"+ employeId);
 		
-	}
+		try{ Employe emp= employeRepository.findById(employeId).orElse(null);
+		   if (emp==null){
+			   l.debug("employe not found!");
+			   l.info("fin mettreAjourEmailByEmployeIdJPQL");
+			   return 0;}
+		   else {
+				   employeRepository.mettreAjourEmailByEmployeIdJPQL(email, employeId);
+				   l.debug ("la mise à jour est faite et le nouveau email est:"+ email);
+				   l.info("fin mettreAjourEmailByEmployeIdJPQL");
+				   return 1;
+				   
+			   }}
+		   catch(Exception e) 
+			{l.error("Erreur : " + e);
+			return 0;}   
+		}
+			   
+		   
 	public int deleteAllContratJPQL() {
-		 l.info("début delete all Contrat");
+		 l.info("IN delete all Contrat");
          employeRepository.deleteAllContratJPQL();
-         l.info("fin delete all Contrat");
+         l.info("Out delete all Contrat");
 	return 0 ;
 	}
 	
 	public float getSalaireByEmployeIdJPQL(int employeId) {
 		try{ l.info("début getSalaireByEmployeId");
-		 l.info("fin getSalaireByEmployeId");
-		 Employe emp=new Employe();
-		 emp= employeRepository.findById(employeId).orElse(null);
-			if(emp!=null)
-		 employeRepository.getSalaireByEmployeIdJPQL(employeId);
-			}
+		employeRepository.getSalaireByEmployeIdJPQL(employeId);}
 		catch (Exception e) { l.error("erreur dans findById():" + e);}
-		
-		
-		 return 0;
+	    return 0;
 	}
 
 	public Double getSalaireMoyenByDepartementId(int departementId) {
 		l.info("début getSalaireMoyenByDepartementId");
 		l.info("fin getSalaireMoyenByDepartementId");
-		Departement dep=new Departement();
-		dep= deptRepoistory.findById(departementId).orElse(null);
-		if(dep!=null)
-		employeRepository.getSalaireMoyenByDepartementId(departementId);
+		Departement	dep= deptRepoistory.findById(departementId).orElse(null);
+		if(dep!=null){
+	return	employeRepository.getSalaireMoyenByDepartementId(departementId);}
 		return null;
+		
+		
 		
 	}
 	
@@ -258,26 +255,31 @@ return 1;}
 
 	
 	@Transactional	
-	public void affecterEmployeADepartement(int employeId, int depId) {
+	public int affecterEmployeADepartement(int employeId, int depId) {
 		l.info("début affectation employee à departement");
 
-		Departement depManagedEntity = deptRepoistory.findById(depId).get();
-		Employe employeManagedEntity = employeRepository.findById(employeId).get();
-
-		if(depManagedEntity.getEmployes() == null){
+		Departement depManagedEntity = deptRepoistory.findById(depId).orElse(null);
+		Employe employeManagedEntity = employeRepository.findById(employeId).orElse(null);
+if (depManagedEntity==null || employeManagedEntity==null )
+	return 0;
+else if(depManagedEntity.getEmployes() == null){
 			l.info("list employee dans le departement est null")
 			;
 			List<Employe> employes = new ArrayList<>();
 			employes.add(employeManagedEntity);
 			depManagedEntity.setEmployes(employes);
 			l.info("employee avec l'id:"+employeId+"  est affecté à departement d'id:" + depId);
-		}else{
+			return 1;
+		}
+		else{
 			l.info("list employee dans le departement non null");
 			depManagedEntity.getEmployes().add(employeManagedEntity);
 			l.info("employee affecté à departement");
 
-		}
+		
 		l.info("fin affectation employee à departement");
+		return 1;
+		}
 
 	}
 	

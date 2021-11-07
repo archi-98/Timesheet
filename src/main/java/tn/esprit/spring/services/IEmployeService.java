@@ -29,10 +29,10 @@ public interface IEmployeService {
 	public int deleteAllContratJPQL();
 	public float getSalaireByEmployeIdJPQL(int employeId);
 	public Double getSalaireMoyenByDepartementId(int departementId);
-	public void affecterEmployeADepartement(int employeId, int depId); 
+	public int affecterEmployeADepartement(int employeId, int depId); 
 	public List<Timesheet> getTimesheetsByMissionAndDate(Employe employe, Mission mission, 
 	Date dateDebut, Date dateFin);
-	//void getAllPrducts();
+	
 	
 	
 	
