@@ -45,7 +45,7 @@ public class EmployeServiceImpl implements IEmployeService {
 		l.info("début mettre à jour email d'employee d'id "+ employeId);
 		try {Employe employe = employeRepository.findById(employeId).orElse(null);
 			if(employe == null){
-				l.info("employe not found");
+				l.info("employe introuvable");
 				l.info("fin mettre à jour email d'employee " );
 
 				return 0;
