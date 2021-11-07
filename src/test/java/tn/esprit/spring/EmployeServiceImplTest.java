@@ -5,6 +5,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
@@ -18,13 +20,18 @@ import tn.esprit.spring.entities.Entreprise;
 import tn.esprit.spring.entities.Mission;
 import tn.esprit.spring.entities.Employe;
 import tn.esprit.spring.entities.Role;
-
+import tn.esprit.spring.repository.ContratRepository;
+import tn.esprit.spring.repository.EmployeRepository;
 import tn.esprit.spring.services.IEmployeService;
 
 @SpringBootTest
 public class EmployeServiceImplTest {
 @Autowired
 IEmployeService es;
+@Autowired
+EmployeRepository er;
+@Autowired
+ContratRepository cr;
 
 
 @Test
@@ -95,7 +102,7 @@ public void testDesaffecterEmployeDuDepartement(){
 public void testGetNombreEmployeJPQL(){
 	
   es.getNombreEmployeJPQL();
- 
+  Assertions.assertEquals(((List<Employe>)er.findAll()).size() ,es.getNombreEmployeJPQL());
 	
 }
 @Test
@@ -104,11 +111,6 @@ public void TestGetAllEmployeNamesJPQL()
 {
 	es.getAllEmployeNamesJPQL();
 }
-
-
-
-
-
 
 @Test
 @Order(12)
@@ -123,24 +125,30 @@ public void TestGetAllEmployeByEntreprise()
 public void TestMettreAjourEmailByEmployeIdJPQL()
 {
 es.mettreAjourEmailByEmployeIdJPQL("takwa.hraghi@esprit.tn", 50);
+Assertions.assertEquals("takwa.hraghi@esprit.tn",er.findById(50).get().getEmail());
+
 }
 @Test
 @Order(14)
 public void TestDeleteAllContratJPQL()
 {
 	es.deleteAllContratJPQL();
+	
+	Assertions.assertEquals(0,((List<Contrat>)cr.findAll()).size());
 }
 @Test
 @Order(15)
 public void TestgetSalaireByEmployeIdJPQL()
 {
-	es.getSalaireByEmployeIdJPQL(3);
+	es.getSalaireByEmployeIdJPQL(1);
+	Assertions.assertEquals(null ,er.getSalaireByEmployeIdJPQL(1));
 	}
 @Test
 @Order(16)
 public void TestGetSalaireMoyenByDepartementId()
 {
 es.getSalaireMoyenByDepartementId(1);
+Assertions.assertEquals(null,er.getSalaireMoyenByDepartementId(1));
 }
 
 
@@ -158,7 +166,7 @@ public void TestGetTimesheetsByMissionAndDate()throws ParseException{
 @Test
 @Order(18)
 public void TestAffecterEmployeADepartement()
-{
+{  
 	es.affecterEmployeADepartement(1,1);
 }
 

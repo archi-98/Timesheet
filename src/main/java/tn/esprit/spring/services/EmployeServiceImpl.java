@@ -227,11 +227,11 @@ return 1;}
 	return 0 ;
 	}
 	
-	public float getSalaireByEmployeIdJPQL(int employeId) {
+	public Double getSalaireByEmployeIdJPQL(int employeId) {
 		try{ l.info("début getSalaireByEmployeId");
 		employeRepository.getSalaireByEmployeIdJPQL(employeId);}
 		catch (Exception e) { l.error("erreur dans findById():" + e);}
-	    return 0;
+	    return null;
 	}
 
 	public Double getSalaireMoyenByDepartementId(int departementId) {

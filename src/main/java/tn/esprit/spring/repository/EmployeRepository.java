@@ -40,7 +40,7 @@ public interface EmployeRepository extends CrudRepository<Employe, Integer>  {
     public void deleteAllContratJPQL();
     
     @Query("select c.salaire from Contrat c join c.employe e where e.id=:employeId")
-    public float getSalaireByEmployeIdJPQL(@Param("employeId")int employeId);
+    public Double getSalaireByEmployeIdJPQL(@Param("employeId")int employeId);
     
     
     @Query("Select "

@@ -147,7 +147,7 @@ public class RestControlEmploye {
     // URL : http://localhost:8081/SpringMVC/servlet/getSalaireByEmployeIdJPQL/2
     @GetMapping(value = "getSalaireByEmployeIdJPQL/{idemp}")
     @ResponseBody
-	public float getSalaireByEmployeIdJPQL(@PathVariable("idemp")int employeId) {
+	public Double getSalaireByEmployeIdJPQL(@PathVariable("idemp")int employeId) {
 		return iemployeservice.getSalaireByEmployeIdJPQL(employeId);
 	}
 
