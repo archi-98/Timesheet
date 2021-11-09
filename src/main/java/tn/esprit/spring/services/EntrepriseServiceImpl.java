@@ -116,19 +116,7 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 		return deptRepoistory.findById(departementId).orElse(null);
 		
 	}
-	/*
-	@Override
-	public Iterable<Entreprise> getAllEntreprise(){
-		try{
-			Iterable<Entreprise> ent= entrepriseRepoistory.findAll();
-			
-			return ent;
-			
-		}
-		catch(Exception e) {
-			l.error("Erreur dans getAllEntreprise()"+ e);
-		}
-	}*/
+	
 
 
 }

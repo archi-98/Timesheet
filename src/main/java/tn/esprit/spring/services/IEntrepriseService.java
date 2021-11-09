@@ -16,5 +16,5 @@ public interface IEntrepriseService {
 	public void deleteDepartementById(int depId);
 	public Entreprise getEntrepriseById(int entrepriseId);
 	Departement getDepartementById(int departementId);
-	//Iterable<Entreprise> getAllEntreprise();
+	
 }
