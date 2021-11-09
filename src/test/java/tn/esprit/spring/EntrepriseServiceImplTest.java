@@ -8,13 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import tn.esprit.spring.entities.Departement;
 import tn.esprit.spring.entities.Entreprise;
+import tn.esprit.spring.repository.EntrepriseRepository;
 import tn.esprit.spring.services.IEntrepriseService;
 
 @SpringBootTest
-public class EntrepriseServiceImplTest {
+public class EntrepriseServiceImplTest  {
 	
 	@Autowired
 	IEntrepriseService ent;
+	@Autowired
+	EntrepriseRepository er;
 
 	
 	@Test
@@ -24,7 +27,6 @@ public class EntrepriseServiceImplTest {
 		Entreprise etrp = new Entreprise("test3", "25");
 		Entreprise et=      ent.ajouterEntreprise(etrp);
 		Assertions.assertEquals(etrp,et);
-		
 		
 	}
 
@@ -54,15 +56,15 @@ public class EntrepriseServiceImplTest {
 	@Test
 	@Order(5)
 	public void testDeleteEntrepriseById(){
-		ent.deleteEntrepriseById(17);
-		Assertions.assertNull(ent.getEntrepriseById(17));
+		ent.deleteEntrepriseById(20);
+		Assertions.assertNull(ent.getEntrepriseById(20));
 	}
 	
 	@Test
 	@Order(6)
 	public void testDeleteDepartementById(){
-		ent.deleteDepartementById(11);
-		Assertions.assertNull(ent.getDepartementById(11));
+		ent.deleteDepartementById(20);
+		Assertions.assertNull(ent.getDepartementById(20));
 	}
 	
 	@Test
