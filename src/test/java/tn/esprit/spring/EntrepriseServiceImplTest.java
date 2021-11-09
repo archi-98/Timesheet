@@ -19,10 +19,11 @@ public class EntrepriseServiceImplTest {
 	
 	@Test
 	@Order(1)
-	public void testAjouterEntreprise(){
+	public int testAjouterEntreprise(){
 		
 		Entreprise etrp = new Entreprise("test3", "25");
 		Assertions.assertEquals(etrp.getName(),ent.ajouterEntreprise(etrp).getName());
+		return 1;
 		
 	}
 
@@ -52,8 +53,8 @@ public class EntrepriseServiceImplTest {
 	@Test
 	@Order(5)
 	public void testDeleteEntrepriseById(){
-		ent.deleteEntrepriseById(12);
-		Assertions.assertNull(ent.getEntrepriseById(12));
+		ent.deleteEntrepriseById(17);
+		Assertions.assertNull(ent.getEntrepriseById(17));
 	}
 	
 	@Test

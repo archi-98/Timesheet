@@ -2,6 +2,8 @@ package tn.esprit.spring.services;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +60,7 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 				Departement depManagedEntity = deptRepoistory.findById(depId).orElse(null);
 				
 				if(depManagedEntity != null){
-					l.info("l'entreprise et le departement existent");
+					l.debug("l'entreprise et le departement existent");
 					depManagedEntity.setEntreprise(entrepriseManagedEntity);
 				    deptRepoistory.save(depManagedEntity);}
 				 l.info("Out Affecter Departement à Entreprise");
@@ -84,6 +86,7 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 		l.info("In Delete Entreprise");
 		Entreprise e=entrepriseRepoistory.findById(entrepriseId).orElse(null);
 		if(e!=null)
+			l.trace("Entreprise supprimée");
 			entrepriseRepoistory.delete(e);	
 		l.info("Out Delete Entreprise");
 	}
@@ -111,6 +114,19 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 		return deptRepoistory.findById(departementId).orElse(null);
 		
 	}
+	/*
+	@Override
+	public Iterable<Entreprise> getAllEntreprise(){
+		try{
+			Iterable<Entreprise> ent= entrepriseRepoistory.findAll();
+			
+			return ent;
+			
+		}
+		catch(Exception e) {
+			l.error("Erreur dans getAllEntreprise()"+ e);
+		}
+	}*/
 
 
 }
