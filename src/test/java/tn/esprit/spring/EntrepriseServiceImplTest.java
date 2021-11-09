@@ -19,11 +19,12 @@ public class EntrepriseServiceImplTest {
 	
 	@Test
 	@Order(1)
-	public int testAjouterEntreprise(){
+	public void testAjouterEntreprise(){
 		
 		Entreprise etrp = new Entreprise("test3", "25");
-		Assertions.assertEquals(etrp.getName(),ent.ajouterEntreprise(etrp).getName());
-		return 1;
+		Entreprise et=      ent.ajouterEntreprise(etrp);
+		Assertions.assertEquals(etrp,et);
+		
 		
 	}
 
