@@ -86,8 +86,10 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 		l.info("In Delete Entreprise");
 		Entreprise e=entrepriseRepoistory.findById(entrepriseId).orElse(null);
 		if(e!=null)
+		{
 			l.trace("Entreprise supprimée");
 			entrepriseRepoistory.delete(e);	
+		}
 		l.info("Out Delete Entreprise");
 	}
 
