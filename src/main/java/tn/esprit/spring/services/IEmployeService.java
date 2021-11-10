@@ -12,6 +12,8 @@ import tn.esprit.spring.entities.Timesheet;
 
 public interface IEmployeService {
 	
+	
+	
 	public int ajouterEmploye(Employe employe);
 	public int mettreAjourEmailByEmployeId(String email, int employeId);
 	public List<Employe> getAllEmployes();
