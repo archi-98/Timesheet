@@ -181,7 +181,7 @@ return 1;}
 	public int getNombreEmployeJPQL() {
 		l.info("début getNombreEmploye");
 		l.info("fin getNombreEmploye");
-		return employeRepository.countemp();
+		return employeRepository.countemp();  
 		
 	}
 	
