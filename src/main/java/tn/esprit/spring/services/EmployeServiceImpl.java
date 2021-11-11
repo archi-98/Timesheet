@@ -55,7 +55,7 @@ public class EmployeServiceImpl implements IEmployeService {
 			employeRepository.save(employe);
 			l.info("email de l'employee d id "+employeId+" est mis à jour");
 			l.info("fin mettre à jour email d'employee " );
-			return 1;}
+			return 1; }
 			
 		}
 		catch(Exception e) 
