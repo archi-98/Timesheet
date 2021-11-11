@@ -43,6 +43,7 @@ public class EntrepriseServiceImplTest  {
 	@Order(3)
 	public void testAffecterDepartementAEntreprise(){
 		ent.affecterDepartementAEntreprise(16, 5);
+		
 	}
 	
 	@Test
