@@ -263,21 +263,21 @@ return 1;}
 if (depManagedEntity==null || employeManagedEntity==null )
 	return 0;
 else if(depManagedEntity.getEmployes() == null){
-			l.info("list employee dans le departement est null")
+			l.debug("list employee dans le departement est null")
 			;
 			List<Employe> employes = new ArrayList<>();
 			employes.add(employeManagedEntity);
 			depManagedEntity.setEmployes(employes);
-			l.info("employee avec l'id:"+employeId+"  est affecté à departement d'id:" + depId);
+			l.debug("employee avec l'id:"+employeId+"  est affecté à departement d'id:" + depId);
 			return 1;
 		}
 		else{
-			l.info("list employee dans le departement non null");
+			l.debug("list employee dans le departement non null");
 			depManagedEntity.getEmployes().add(employeManagedEntity);
-			l.info("employee affecté à departement");
+			l.debug("employee affecté à departement");
 
 		
-		l.info("fin affectation employee à departement");
+l.info("fin affectation employee à departement");
 		return 1;
 		}
 
